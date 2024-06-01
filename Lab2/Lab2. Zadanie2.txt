@@ -1,0 +1,165 @@
+﻿using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace SimpleCalculator
+{
+    public class CalculatorForm : Form
+    {
+        private TextBox txtDisplay;
+        private Button[] numberButtons;
+        private Button btnAdd, btnSubtract, btnMultiply, btnDivide, btnEquals, btnClear;
+        private string currentOperation;
+        private double resultValue = 0;
+        private bool isOperationPerformed = false;
+
+        public CalculatorForm()
+        {
+            var stopwatch = Stopwatch.StartNew();
+            InitializeComponent();
+            stopwatch.Stop();
+            if (stopwatch.ElapsedMilliseconds > 1000) // Próg 1 sekundy
+            {
+                LogInitializationTime(stopwatch.ElapsedMilliseconds);
+            }
+        }
+
+        private void InitializeComponent()
+        {
+            this.txtDisplay = new TextBox { Left = 20, Top = 20, Width = 260, ReadOnly = true, TextAlign = HorizontalAlignment.Right };
+            this.numberButtons = new Button[10];
+            for (int i = 0; i < 10; i++)
+            {
+                this.numberButtons[i] = new Button { Text = i.ToString(), Width = 60, Height = 40 };
+                this.numberButtons[i].Click += new EventHandler(NumberButton_Click);
+            }
+
+            this.btnAdd = new Button { Text = "+", Width = 60, Height = 40 };
+            this.btnSubtract = new Button { Text = "-", Width = 60, Height = 40 };
+            this.btnMultiply = new Button { Text = "*", Width = 60, Height = 40 };
+            this.btnDivide = new Button { Text = "/", Width = 60, Height = 40 };
+            this.btnEquals = new Button { Text = "=", Width = 60, Height = 40 };
+            this.btnClear = new Button { Text = "C", Width = 60, Height = 40 };
+
+            this.btnAdd.Click += new EventHandler(OperationButton_Click);
+            this.btnSubtract.Click += new EventHandler(OperationButton_Click);
+            this.btnMultiply.Click += new EventHandler(OperationButton_Click);
+            this.btnDivide.Click += new EventHandler(OperationButton_Click);
+            this.btnEquals.Click += new EventHandler(BtnEquals_Click);
+            this.btnClear.Click += new EventHandler(BtnClear_Click);
+
+            this.Controls.Add(txtDisplay);
+            for (int i = 1; i < 10; i++)
+            {
+                int row = (i - 1) / 3;
+                int col = (i - 1) % 3;
+                this.numberButtons[i].Left = 20 + col * 70;
+                this.numberButtons[i].Top = 60 + row * 50;
+                this.Controls.Add(this.numberButtons[i]);
+            }
+            this.numberButtons[0].Left = 90;
+            this.numberButtons[0].Top = 210;
+            this.Controls.Add(this.numberButtons[0]);
+
+            this.btnAdd.Left = 230;
+            this.btnAdd.Top = 60;
+            this.Controls.Add(this.btnAdd);
+
+            this.btnSubtract.Left = 230;
+            this.btnSubtract.Top = 110;
+            this.Controls.Add(this.btnSubtract);
+
+            this.btnMultiply.Left = 230;
+            this.btnMultiply.Top = 160;
+            this.Controls.Add(this.btnMultiply);
+
+            this.btnDivide.Left = 230;
+            this.btnDivide.Top = 210;
+            this.Controls.Add(this.btnDivide);
+
+            this.btnEquals.Left = 20;
+            this.btnEquals.Top = 260;
+            this.Controls.Add(this.btnEquals);
+
+            this.btnClear.Left = 150;
+            this.btnClear.Top = 260;
+            this.Controls.Add(this.btnClear);
+
+            this.Text = "Simple Calculator";
+            this.ClientSize = new Size(320, 320);
+        }
+
+        private void NumberButton_Click(object sender, EventArgs e)
+        {
+            if (txtDisplay.Text == "0" || isOperationPerformed)
+                txtDisplay.Clear();
+
+            isOperationPerformed = false;
+            Button button = sender as Button;
+            txtDisplay.Text += button.Text;
+        }
+
+        private void OperationButton_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+
+            if (resultValue != 0)
+            {
+                btnEquals.PerformClick();
+                currentOperation = button.Text;
+                isOperationPerformed = true;
+            }
+            else
+            {
+                currentOperation = button.Text;
+                resultValue = double.Parse(txtDisplay.Text);
+                isOperationPerformed = true;
+            }
+        }
+
+        private void BtnEquals_Click(object sender, EventArgs e)
+        {
+            switch (currentOperation)
+            {
+                case "+":
+                    txtDisplay.Text = (resultValue + double.Parse(txtDisplay.Text)).ToString();
+                    break;
+                case "-":
+                    txtDisplay.Text = (resultValue - double.Parse(txtDisplay.Text)).ToString();
+                    break;
+                case "*":
+                    txtDisplay.Text = (resultValue * double.Parse(txtDisplay.Text)).ToString();
+                    break;
+                case "/":
+                    txtDisplay.Text = (resultValue / double.Parse(txtDisplay.Text)).ToString();
+                    break;
+            }
+            resultValue = double.Parse(txtDisplay.Text);
+            currentOperation = "";
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = "0";
+            resultValue = 0;
+        }
+
+        private void LogInitializationTime(long milliseconds)
+        {
+            if (!EventLog.SourceExists("SimpleCalculator"))
+            {
+                EventLog.CreateEventSource("SimpleCalculator", "Application");
+            }
+            EventLog.WriteEntry("SimpleCalculator", $"Initialization time: {milliseconds} ms", EventLogEntryType.Warning);
+        }
+
+        [STAThread]
+        public static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new CalculatorForm());
+        }
+    }
+}

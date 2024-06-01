@@ -1,0 +1,87 @@
+﻿using System;
+using System.Diagnostics;
+using System.Windows.Forms;
+
+namespace DivisionApp
+{
+    public class MainForm : Form
+    {
+        private TextBox txtDividend;
+        private TextBox txtDivisor;
+        private TextBox txtResult;
+        private Button btnDivide;
+
+        public MainForm()
+        {
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            this.txtDividend = new TextBox() { Left = 50, Top = 20, Width = 200 };
+            this.txtDivisor = new TextBox() { Left = 50, Top = 60, Width = 200 };
+            this.txtResult = new TextBox() { Left = 50, Top = 140, Width = 200, ReadOnly = true };
+            this.btnDivide = new Button() { Text = "Divide", Left = 50, Top = 100, Width = 200 };
+
+            this.btnDivide.Click += new EventHandler(this.BtnDivide_Click);
+
+            this.Controls.Add(txtDividend);
+            this.Controls.Add(txtDivisor);
+            this.Controls.Add(txtResult);
+            this.Controls.Add(btnDivide);
+
+            this.Text = "Division App";
+            this.ClientSize = new System.Drawing.Size(300, 200);
+        }
+
+        private void BtnDivide_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                double dividend = double.Parse(txtDividend.Text);
+                double divisor = double.Parse(txtDivisor.Text);
+
+                if (divisor == 0)
+                {
+                    throw new DivideByZeroException("Divisor cannot be zero.");
+                }
+
+                double result = dividend / divisor;
+                txtResult.Text = result.ToString();
+            }
+            catch (FormatException ex)
+            {
+                LogError("Input is not a valid number.", ex);
+                MessageBox.Show("Please enter valid numbers.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (DivideByZeroException ex)
+            {
+                LogError("Attempted to divide by zero.", ex);
+                MessageBox.Show("Divisor cannot be zero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                LogError("An unexpected error occurred.", ex);
+                MessageBox.Show("An unexpected error occurred.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LogError(string message, Exception ex)
+        {
+            if (!EventLog.SourceExists("DivisionApp"))
+            {
+                EventLog.CreateEventSource("DivisionApp", "Application");
+            }
+
+            EventLog.WriteEntry("DivisionApp", $"{message}\n{ex.ToString()}", EventLogEntryType.Error);
+        }
+
+        [STAThread]
+        public static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
+        }
+    }
+}
