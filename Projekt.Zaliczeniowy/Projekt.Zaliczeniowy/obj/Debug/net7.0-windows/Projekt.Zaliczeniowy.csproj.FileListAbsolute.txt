@@ -1,0 +1,17 @@
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\obj\Debug\net7.0-windows\Projekt.Zaliczeniowy.csproj.AssemblyReference.cache
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\obj\Debug\net7.0-windows\Projekt.Zaliczeniowy.Form1.resources
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\obj\Debug\net7.0-windows\Projekt.Zaliczeniowy.csproj.GenerateResource.cache
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\obj\Debug\net7.0-windows\Projekt.Zaliczeniowy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\obj\Debug\net7.0-windows\Projekt.Zaliczeniowy.AssemblyInfoInputs.cache
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\obj\Debug\net7.0-windows\Projekt.Zaliczeniowy.AssemblyInfo.cs
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\obj\Debug\net7.0-windows\Projekt.Zaliczeniowy.csproj.CoreCompileInputs.cache
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\bin\Debug\net7.0-windows\Projekt.Zaliczeniowy.exe
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\bin\Debug\net7.0-windows\Projekt.Zaliczeniowy.deps.json
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\bin\Debug\net7.0-windows\Projekt.Zaliczeniowy.runtimeconfig.json
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\bin\Debug\net7.0-windows\Projekt.Zaliczeniowy.dll
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\bin\Debug\net7.0-windows\Projekt.Zaliczeniowy.pdb
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\obj\Debug\net7.0-windows\Projekt.Zaliczeniowy.dll
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\obj\Debug\net7.0-windows\refint\Projekt.Zaliczeniowy.dll
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\obj\Debug\net7.0-windows\Projekt.Zaliczeniowy.pdb
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\obj\Debug\net7.0-windows\Projekt.Zaliczeniowy.genruntimeconfig.cache
+C:\Users\Ewa\Desktop\Studia\.net\Projekt.Zaliczeniowy\Projekt.Zaliczeniowy\obj\Debug\net7.0-windows\ref\Projekt.Zaliczeniowy.dll
